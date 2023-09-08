@@ -1,8 +1,9 @@
 ```mermaid
 sequenceDiagram
 
-    participant iPhone
+    participant MyTrips
     participant Internet
-    participant WMATA API
-    participant Track Sensor
+    participant WAPI as WMATA API
+    participant TS as Track Sensor
+
 ```
