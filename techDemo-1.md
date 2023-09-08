@@ -14,6 +14,11 @@ sequenceDiagram
     end
 
     WAPI ->> WAPI: Process Updates
-    
+
+    WAPI ->> Internet: Send positions
+    Internet ->> MyTrips: Send positions
+
+    MyTrips ->> MyTrips: Update View
+
 
 ```
