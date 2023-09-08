@@ -1,24 +1,30 @@
 ```mermaid
 sequenceDiagram
 
-    participant MyTrips
-    participant Internet
+    participant MyTrips as MyTrips (iPhone)
+    participant PNS as Push Notification <br> Server
+    participant APN as Apple Push <br> Notifications
     participant WAPI as WMATA API
     participant TS as Track Sensor
 
-    MyTrips ->> Internet: Fetch Arrival Data
-    Internet ->> WAPI: Send Request
 
     loop Real Time 
     TS ->> WAPI: Send train updates
+    WAPI ->> WAPI: Process Updates
     end
 
-    WAPI ->> WAPI: Process Updates
+    MyTrips ->> APN: Request Token
+    APN ->> MyTrips: Send Token
+    
+    MyTrips ->> PNS: Send Token
+    PNS ->> WAPI: Fetch Positions
+    WAPI ->> PNS: Send Positions
 
-    WAPI ->> Internet: Send positions
-    Internet ->> MyTrips: Send positions
+    PNS ->> APN: Send Push <br> Notification Update <br> with Token
 
-    MyTrips ->> MyTrips: Update View
+    APN ->> MyTrips: Send Push Update with Positions
+
+    MyTrips ->> MyTrips: Update Lockscreen View
 
 
 ```
