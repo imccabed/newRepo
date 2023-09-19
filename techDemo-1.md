@@ -1,3 +1,4 @@
+# Push Notification Sequence Diagram
 ```mermaid
 sequenceDiagram
 
@@ -25,6 +26,5 @@ sequenceDiagram
     APN ->> MyTrips: Send Push Update with Positions
 
     MyTrips ->> MyTrips: Update Lockscreen View
-
-
 ```
+This simple diagram shows how live activities work on your lock screen!
